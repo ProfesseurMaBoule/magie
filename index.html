@@ -1,19 +1,647 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142b4a">
+  <meta name="description" content="La magie du Professeur Maboule : spectacles pour enfants, magie rapprochée et animations privées dans la région d'Aigle, Montreux, Vevey et Lausanne.">
+  <title>La magie du Professeur Maboule | Philippe Krähenbühl</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+      --navy: #142b4a;
+      --blue: #2466a6;
+      --sky: #dff3ff;
+      --yellow: #ffd34e;
+      --red: #e75b52;
+      --cream: #fffaf0;
+      --ink: #202a38;
+      --muted: #4e5d6e;
+      --white: #fff;
+      --radius: 22px;
+      --shadow: 0 18px 50px rgba(20, 43, 74, .13);
+    }
 
-<section class="section" id="galerie" style="background:#fffaf0;">
-  <div class="section-heading">
-    <span class="section-label">Nos souvenirs magiques</span>
-    <h2>La magie en images 📸</h2>
-    <p>Des sourires, des surprises et des moments inoubliables !</p>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink); font-family: "DM Sans", sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.7; background: var(--cream);
+    }
+    a { color: inherit; }
+    .site-shell { overflow: hidden; }
+
+    .topbar {
+      background: var(--navy); color: white; padding: 14px 22px;
+      text-align: center; font-size: 1rem; letter-spacing: .03em;
+    }
+    .topbar strong { color: var(--yellow); }
+
+    .hero {
+      position: relative; isolation: isolate; overflow: hidden;
+      padding: 26px 22px 76px;
+      background:
+        radial-gradient(circle at 12% 24%, rgba(255,255,255,.7) 0 2px, transparent 3px),
+        radial-gradient(circle at 86% 20%, rgba(255,211,78,.8) 0 4px, transparent 5px),
+        radial-gradient(circle at 76% 70%, rgba(255,255,255,.65) 0 3px, transparent 4px),
+        linear-gradient(135deg, #dff3ff, #a9dcfa);
+    }
+
+    .nav, .hero-inner, .section-inner, .footer-inner {
+      width: min(1100px, 100%); margin-inline: auto;
+    }
+    .nav { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .brand { font: 700 1.25rem "Fredoka", sans-serif; color: var(--navy); text-decoration: none; }
+    .nav-link {
+      text-decoration: none; font-weight: 800; background: var(--yellow);
+      padding: 12px 20px; border-radius: 999px; border: 2px solid var(--navy);
+      box-shadow: 0 4px 0 var(--navy); white-space: nowrap; font-size: 1.05rem;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 44px;
+      padding-top: 62px;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px;
+      color: var(--blue); font-weight: 800; text-transform: uppercase;
+      letter-spacing: .13em; font-size: 0.95rem;
+    }
+
+    h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.12; }
+    h1 { color: var(--navy); font-size: clamp(2.7rem, 6vw, 5.2rem); margin: 0 0 18px; letter-spacing: -.035em; }
+    h1 span { color: var(--red); display: block; }
+    .hero-copy { max-width: 600px; font-size: 1.3rem; color: #203144; margin: 0 0 28px; font-weight: 500; }
+    .actions { display: flex; flex-wrap: wrap; gap: 13px; }
+    .button {
+      display: inline-flex; justify-content: center; align-items: center; gap: 9px; margin-bottom: 14px;
+      padding: 16px 24px; border-radius: 13px; border: 2.5px solid var(--navy);
+      font-weight: 800; font-size: 1.1rem; text-decoration: none; transition: transform .18s, box-shadow .18s;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--red); color: white; box-shadow: 0 5px 0 var(--navy); }
+    .button-secondary { background: rgba(255,255,255,.85); color: var(--navy); }
+
+    /* Bigger Flying Magic Tour Container */
+    .magic-art {
+      min-height: 640px;
+      position: relative;
+      width: 100%;
+      perspective: 1400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Base Playing Card Design */
+    .magic-card {
+      position: absolute;
+      width: 96px;
+      height: 140px;
+      background: var(--white);
+      border: 3.5px solid var(--navy);
+      border-radius: 12px;
+      box-shadow: 4px 4px 0 rgba(20,43,74,0.3);
+      padding: 6px;
+      font-family: "Fredoka", sans-serif;
+      font-weight: 700;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform-style: preserve-3d;
+    }
+
+    .magic-card .corner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 0.85;
+      font-size: 1.05rem;
+    }
+    .magic-card .corner.bottom-right {
+      transform: rotate(180deg);
+    }
+    .magic-card .corner .suit-mini {
+      font-size: 0.85rem;
+      margin-top: 2px;
+    }
+
+    .magic-card .center-suit {
+      font-size: 2.5rem;
+      line-height: 1;
+      text-align: center;
+      align-self: center;
+      margin: auto 0;
+    }
+
+    .magic-card.face-card .card-art-clean {
+      margin: auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+    }
+    .magic-card.face-card .crown-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+    .magic-card.face-card .face-suit {
+      font-size: 1.2rem;
+      margin-top: -2px;
+    }
+
+    .magic-card.red-suit { color: var(--red); }
+    .magic-card.black-suit { color: var(--navy); }
+
+    /* 3D Circular Orbit Animations - Expanded Radius (250px) */
+    .card-orbit-1 { animation: cardTourBigger 10s infinite linear; }
+    .card-orbit-2 { animation: cardTourBigger 10s infinite linear -1.25s; }
+    .card-orbit-3 { animation: cardTourBigger 10s infinite linear -2.5s; }
+    .card-orbit-4 { animation: cardTourBigger 10s infinite linear -3.75s; }
+    .card-orbit-5 { animation: cardTourBigger 10s infinite linear -5s; }
+    .card-orbit-6 { animation: cardTourBigger 10s infinite linear -6.25s; }
+    .card-orbit-7 { animation: cardTourBigger 10s infinite linear -7.5s; }
+    .card-orbit-8 { animation: cardTourBigger 10s infinite linear -8.75s; }
+
+    @keyframes cardTourBigger {
+      0% {
+        transform: translate3d(0px, -250px, 0px) rotate(0deg) scale(0.9);
+        z-index: 5;
+      }
+      25% {
+        transform: translate3d(250px, 0px, 90px) rotate(15deg) scale(1.18);
+        z-index: 10;
+      }
+      50% {
+        transform: translate3d(0px, 250px, 0px) rotate(30deg) scale(0.9);
+        z-index: 5;
+      }
+      75% {
+        transform: translate3d(-250px, 0px, -90px) rotate(-15deg) scale(0.72);
+        z-index: 1;
+      }
+      100% {
+        transform: translate3d(0px, -250px, 0px) rotate(0deg) scale(0.9);
+        z-index: 5;
+      }
+    }
+
+    .intro-strip { background: var(--navy); color: white; padding: 22px; font-size: 1.15rem; }
+    .intro-strip-inner { width: min(1100px, 100%); margin: auto; display: flex; flex-wrap: wrap; gap: 12px 30px; justify-content: space-between; align-items: center; }
+    .intro-strip p { margin: 0; }
+    .intro-strip strong { color: var(--yellow); }
+
+    section.content-section { padding: 76px 22px; }
+    .posters-section { background: var(--cream); }
+
+    .poster-carousel {
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .poster-track {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+    .poster-card {
+      flex: 0 0 100%;
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+    .poster-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 75vh;
+      aspect-ratio: 3 / 4;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 12px;
+      margin: 0 auto;
+    }
+    .poster-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 18px; }
+    .poster-control {
+      width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--navy);
+      background: var(--yellow); color: var(--navy); font-size: 1.4rem; font-weight: 800; cursor: pointer;
+    }
+    .poster-control:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+    .poster-dots { display: flex; justify-content: center; gap: 10px; }
+    .poster-dot { width: 12px; height: 12px; padding: 0; border: 1.5px solid var(--navy); border-radius: 50%; background: transparent; cursor: pointer; }
+    .poster-dot[aria-current="true"] { background: var(--red); transform: scale(1.25); }
+
+    .section-heading { text-align: center; max-width: 720px; margin: 0 auto 38px; }
+    .section-heading h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--navy); margin: 0 0 12px; }
+    .section-heading p { color: var(--muted); margin: 0; font-size: 1.2rem; }
+
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 42px; align-items: center; }
+    .about-note {
+      background: var(--yellow); padding: 32px; border-radius: var(--radius);
+      border: 2.5px solid var(--navy); box-shadow: 7px 7px 0 var(--navy); transform: rotate(-1deg);
+    }
+
+    /* Replaced Stars with Mini Card Graphics in About Note */
+    .about-cards-icon {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+      position: relative;
+    }
+    .mini-card {
+      width: 38px;
+      height: 54px;
+      background: white;
+      border: 2px solid var(--navy);
+      border-radius: 6px;
+      box-shadow: 2.5px 2.5px 0 var(--navy);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 3px;
+      font-family: "Fredoka", sans-serif;
+      font-weight: 700;
+      font-size: 0.65rem;
+      line-height: 1;
+    }
+    .mini-card .mini-center { font-size: 1.1rem; align-self: center; }
+    .mini-card.c1 { transform: rotate(-8deg); color: var(--navy); }
+    .mini-card.c2 { transform: rotate(10deg) translate(-10px, -4px); color: var(--red); }
+
+    .about-note h3 { font-size: 1.8rem; margin: 10px 0; color: var(--navy); }
+    .about-note p { margin: 0; font-size: 1.15rem; font-weight: 500; }
+    .about-copy p { color: var(--muted); margin: 0 0 16px; font-size: 1.15rem; }
+    .about-copy strong { color: var(--navy); }
+
+    .services { background: #edf7ff; }
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .service-card {
+      background: white; padding: 30px; border: 2.5px solid var(--navy); border-radius: var(--radius);
+      box-shadow: 0 8px 0 rgba(20,43,74,.08);
+      font-size: 1.1rem;
+    }
+
+    .service-icon {
+      width: 66px; height: 66px; display: grid; place-items: center; border-radius: 18px;
+      background: #ffea00;
+      border: 2.5px solid var(--navy);
+      box-shadow: 3px 3px 0 var(--navy);
+      font-size: 2.2rem; margin-bottom: 20px;
+    }
+    .service-card:nth-child(2) .service-icon { background: #ff6b5b; }
+    .service-card:nth-child(3) .service-icon {
+  background: #1c477f; /* Warm, medium-dark jade green */
+}
+
+    .service-card h3 { font-size: 1.6rem; color: var(--navy); margin: 0 0 12px; }
+    .service-card p { color: var(--muted); margin: 0 0 14px; font-size: 1.12rem; }
+    .service-card ul { padding-left: 20px; color: var(--muted); margin: 10px 0 0; font-size: 1.08rem; }
+    .service-card li { margin: 6px 0; }
+
+    .objects { background: var(--cream); }
+    .object-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 30px; }
+    .object-pill {
+      background: white; border: 2px solid var(--navy); padding: 12px 20px; border-radius: 999px;
+      font-weight: 700; color: var(--navy); font-size: 1.1rem; box-shadow: 3px 3px 0 rgba(20,43,74,0.1);
+    }
+
+    .contact { background: var(--navy); color: white; text-align: center; }
+    .contact .section-heading h2 { color: white; }
+    .contact .section-heading p { color: #d4e1ef; font-size: 1.25rem; }
+    .contact-panel {
+      max-width: 760px; margin: auto; background: var(--yellow); color: var(--navy);
+      padding: clamp(28px, 5vw, 46px); border-radius: 26px; border: 3px solid white;
+      box-shadow: 0 10px 0 rgba(0,0,0,.15);
+      font-size: 1.2rem;
+    }
+    .contact-panel h3 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0 0 12px; }
+    .contact-panel p { margin: 0 auto 24px; max-width: 540px; font-weight: 500; }
+    .contact-panel .button { background: var(--red); color: white; font-size: 1.15rem; }
+
+    /* Added Top Margin Space Between Email Button & Region Text */
+    .region {
+      margin-top: 28px;
+      margin-bottom: 0;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    footer { background: #0c1c31; color: #c4d2e0; text-align: center; padding: 28px 22px; font-size: 1rem; }
+    footer strong { color: var(--yellow); font-family: "Fredoka", sans-serif; font-size: 1.25rem; }
+
+    @media (max-width: 760px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 20px; padding-top: 45px; }
+      .magic-art { min-height: 400px; }
+      .magic-card { width: 70px; height: 104px; border-width: 2.5px; padding: 4px; }
+      .magic-card .corner { font-size: 0.8rem; }
+      .magic-card .corner .suit-mini { font-size: 0.65rem; }
+      .magic-card .center-suit { font-size: 1.5rem; }
+      .magic-card.face-card .crown-icon { font-size: 1.2rem; }
+      @keyframes cardTourBigger {
+        0% { transform: translate3d(0px, -140px, 0px) rotate(0deg) scale(0.9); z-index: 5; }
+        25% { transform: translate3d(140px, 0px, 50px) rotate(15deg) scale(1.1); z-index: 10; }
+        50% { transform: translate3d(0px, 140px, 0px) rotate(30deg) scale(0.9); z-index: 5; }
+        75% { transform: translate3d(-140px, 0px, -50px) rotate(-15deg) scale(0.75); z-index: 1; }
+        100% { transform: translate3d(0px, -140px, 0px) rotate(0deg) scale(0.9); z-index: 5; }
+      }
+      .about-grid { grid-template-columns: 1fr; gap: 28px; }
+      .service-grid { grid-template-columns: 1fr; }
+      section.content-section { padding: 58px 20px; }
+    }
+    @media (max-width: 440px) {
+      .nav { align-items: flex-start; }
+      .brand { max-width: 160px; line-height: 1.2; }
+      .nav-link { font-size: .9rem; padding: 9px 14px; }
+      .hero { padding-inline: 18px; }
+      .actions { flex-direction: column; align-items: stretch; }
+      .button { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="site-shell">
+  <header class="hero" id="accueil">
+    <div class="hero-inner">
+      <div>
+        <h1>La magie du <span>Professeur Maboule</span></h1>
+        <p class="hero-copy">Des tours étonnants, des enfants qui participent et des adultes qui se laissent surprendre. Un moment magique pour vos fêtes et vos événements.</p>
+        <div class="actions">
+          <a class="button button-primary" href="#prestations">Découvrir les spectacles <span aria-hidden="true">→</span></a>
+          <a class="button button-secondary" href="#apropos">Rencontrer le professeur</a>
+        </div>
+      </div>
+
+      <!-- Bigger Circular Flying Card Tour Section -->
+      <div class="magic-art" aria-hidden="true">
+        <!-- King of Spades -->
+        <div class="magic-card face-card black-suit card-orbit-1">
+          <div class="corner top-left">K<span class="suit-mini">♠</span></div>
+          <div class="card-art-clean">
+            <span class="crown-icon">♔</span>
+            <span class="face-suit">♠</span>
+          </div>
+          <div class="corner bottom-right">K<span class="suit-mini">♠</span></div>
+        </div>
+
+        <!-- Queen of Hearts -->
+        <div class="magic-card face-card red-suit card-orbit-2">
+          <div class="corner top-left">Q<span class="suit-mini">♥</span></div>
+          <div class="card-art-clean">
+            <span class="crown-icon">♕</span>
+            <span class="face-suit">♥</span>
+          </div>
+          <div class="corner bottom-right">Q<span class="suit-mini">♥</span></div>
+        </div>
+
+        <!-- Jack of Clubs -->
+        <div class="magic-card face-card black-suit card-orbit-3">
+          <div class="corner top-left">J<span class="suit-mini">♣</span></div>
+          <div class="card-art-clean">
+            <span class="crown-icon">♗</span>
+            <span class="face-suit">♣</span>
+          </div>
+          <div class="corner bottom-right">J<span class="suit-mini">♣</span></div>
+        </div>
+
+        <!-- Ace of Hearts -->
+        <div class="magic-card red-suit card-orbit-4">
+          <div class="corner top-left">A<span class="suit-mini">♥</span></div>
+          <div class="center-suit">♥</div>
+          <div class="corner bottom-right">A<span class="suit-mini">♥</span></div>
+        </div>
+
+        <!-- King of Diamonds -->
+        <div class="magic-card face-card red-suit card-orbit-5">
+          <div class="corner top-left">K<span class="suit-mini">♦</span></div>
+          <div class="card-art-clean">
+            <span class="crown-icon">♔</span>
+            <span class="face-suit">♦</span>
+          </div>
+          <div class="corner bottom-right">K<span class="suit-mini">♦</span></div>
+        </div>
+
+        <!-- 10 of Spades -->
+        <div class="magic-card black-suit card-orbit-6">
+          <div class="corner top-left">10<span class="suit-mini">♠</span></div>
+          <div class="center-suit">♠</div>
+          <div class="corner bottom-right">10<span class="suit-mini">♠</span></div>
+        </div>
+
+        <!-- Queen of Clubs -->
+        <div class="magic-card face-card black-suit card-orbit-7">
+          <div class="corner top-left">Q<span class="suit-mini">♣</span></div>
+          <div class="card-art-clean">
+            <span class="crown-icon">♕</span>
+            <span class="face-suit">♣</span>
+          </div>
+          <div class="corner bottom-right">Q<span class="suit-mini">♣</span></div>
+        </div>
+
+        <!-- 8 of Diamonds -->
+        <div class="magic-card red-suit card-orbit-8">
+          <div class="corner top-left">8<span class="suit-mini">♦</span></div>
+          <div class="center-suit">♦</div>
+          <div class="corner bottom-right">8<span class="suit-mini">♦</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="intro-strip">
+    <div class="intro-strip-inner">
+      <p>🪄 <strong>Pour petits et grands</strong> — dès 4 ans</p>
+      <p>📍 Aigle · Montreux · Vevey · Lausanne</p>
+    </div>
   </div>
 
-  <div class="photo-gallery">
-    <img src="photos/spectacle.jpg"
-         alt="Philippe pendant son spectacle de magie">
+  <section class="content-section posters-section" id="affiches">
+    <div class="section-inner">
+      <div class="section-heading">
+        <h2>Les spectacles en affiches</h2>
+        <p>Un aperçu des spectacles passés du Professeur Maboule. Faites défiler les affiches pour les découvrir.</p>
+      </div>
+      <div class="poster-carousel" aria-label="Carrousel des affiches de spectacles">
+        <div class="poster-track" id="posterTrack">
+          <article class="poster-card">
+            <img src="poster1.png" alt="Affiche 1 du spectacle La magie du Professeur Maboule" class="poster-image">
+          </article>
+          <article class="poster-card">
+            <img src="poster2.png" alt="Affiche 2 du spectacle La magie du Professeur Maboule" class="poster-image">
+          </article>
+          <article class="poster-card">
+            <img src="poster3.jpeg" alt="Affiche 3 du spectacle La magie du Professeur Maboule" class="poster-image">
+          </article>
+        </div>
+        <div class="poster-controls">
+          <button class="poster-control" id="posterPrev" type="button" aria-label="Affiche précédente">‹</button>
+          <div class="poster-dots" role="group" aria-label="Choisir une affiche">
+            <button class="poster-dot" type="button" data-slide="0" aria-label="Afficher l'affiche 1" aria-current="true"></button>
+            <button class="poster-dot" type="button" data-slide="1" aria-label="Afficher l'affiche 2" aria-current="false"></button>
+            <button class="poster-dot" type="button" data-slide="2" aria-label="Afficher l'affiche 3" aria-current="false"></button>
+          </div>
+          <button class="poster-control" id="posterNext" type="button" aria-label="Affiche suivante">›</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <img src="photos/anniversaire.jpg"
-         alt="Animation magique pour un anniversaire">
+ <main>
+    <section class="content-section" id="apropos">
+      <div class="section-inner about-grid">
+        <div class="about-note">
+          <!-- Replaced ✨ Star emoji with Cards visual -->
+          <div class="about-cards-icon" aria-hidden="true">
+            <div class="mini-card c1">
+              <div>K</div>
+              <div class="mini-center">♠</div>
+            </div>
+            <div class="mini-card c2">
+              <div>A</div>
+              <div class="mini-center">♥</div>
+            </div>
+          </div>
+          <h3>Un professeur… pas tout à fait comme les autres !</h3>
+          <p>La curiosité scientifique rencontre le mystère de la magie.</p>
+        </div>
+        <div class="about-copy">
+          <p class="eyebrow">Qui se cache derrière le chapeau ?</p>
+          <h2 style="font-family:'Fredoka',sans-serif;font-size:clamp(2rem,4vw,2.8rem);line-height:1.12;color:var(--navy);margin:0 0 18px">Philippe Krähenbühl</h2>
+          <p>Après une carrière de professeur de biologie, Philippe Krähenbühl pratique la magie depuis de nombreuses années, aussi bien pour les enfants que pour les adultes.</p>
+          <p>Membre du Club des magiciens de Lausanne, il anime régulièrement les <strong>Théâtres magiques au Théâtre Claude Bercantal</strong> et à la <strong>Fabrik culturelle de Vevey</strong>.</p>
+          <p>Il propose également des spectacles pour les anniversaires d’enfants dès 4 ans et participe au Passeport Vacances de Vevey avec des initiations à la magie des cartes.</p>
+        </div>
+      </div>
+    </section>
 
-    <img src="photos/tours-magie.jpg"
-         alt="Tours de magie pour les enfants">
-  </div>
-</section>
+    <section class="content-section services" id="prestations">
+      <div class="section-inner">
+        <div class="section-heading">
+          <h2>Animations et spectacles</h2>
+        </div>
+        <div class="service-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">🎈</div>
+            <h3>Fêtes pour enfants</h3>
+            <p>Un spectacle participatif pour faire rêver les enfants et les inviter à devenir les assistants du Professeur Maboule.</p>
+            <ul>
+              <li>Dès 4 ans</li>
+              <li>Environ 45 minutes, ou plus selon l’intérêt des enfants</li>
+              <li>Des tours choisis pour favoriser la participation</li>
+              <li>Anniversaires et animations</li>
+            </ul>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">🃏</div>
+            <h3>Magie rapprochée</h3>
+            <p>La magie se déroule tout près des invités, à quelques centimètres de leurs yeux, pour une expérience étonnante et conviviale.</p>
+            <ul>
+              <li>Cocktails et réceptions</li>
+              <li>Fêtes privées</li>
+              <li>Soirées d’entreprise</li>
+            </ul>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">🥂</div>
+            <h3>Événements pour adultes</h3>
+            <p>Des interventions magiques pour apporter une touche d’originalité à vos moments de fête.</p>
+            <ul>
+              <li>Mariages</li>
+              <li>Anniversaires</li>
+              <li>Cocktails et soirées privées</li>
+              <li>Événements d’entreprise</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section objects">
+      <div class="section-inner">
+        <div class="section-heading">
+          <h2>Les ingrédients de la magie</h2>
+          <p>Des objets familiers… et pourtant, tout devient possible!</p>
+          <div class="object-list">
+            <span class="object-pill">🧣 Foulards</span>
+            <span class="object-pill">🥤 Gobelets</span>
+            <span class="object-pill">🪢 Cordes</span>
+            <span class="object-pill">⭕ Anneaux</span>
+            <span class="object-pill">🔴 Balles</span>
+            <span class="object-pill">🃏 Cartes</span>
+            <span class="object-pill">🧠 Lecture de pensée</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section contact" id="contact">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="eyebrow" style="color:var(--yellow)">Préparons votre événement</p>
+          <h2>Et si on faisait un peu de magie?</h2>
+        </div>
+        <div class="contact-panel">
+          <h3>Contact et renseignements</h3>
+          <p>Envoyez un e-mail pour demander des informations ou parler de la prestation qui conviendrait à votre événement.</p>
+          <a class="button" href="mailto:pkraehenbuehl572@gmail.com">Écrire un e-mail</a>
+          <p class="region">📍 Région d’Aigle · Montreux · Vevey · Lausanne</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <strong>La magie du Professeur Maboule</strong>
+      <div>© 2026 Philippe — Tous droits réservés.</div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const track = document.getElementById('posterTrack');
+  const cards = document.querySelectorAll('.poster-card');
+  const prevBtn = document.getElementById('posterPrev');
+  const nextBtn = document.getElementById('posterNext');
+  const dots = document.querySelectorAll('.poster-dot');
+
+  let currentIndex = 0;
+
+  function updateCarousel() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.forEach((dot, index) => {
+      dot.setAttribute('aria-current', index === currentIndex ? 'true' : 'false');
+    });
+  }
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % cards.length;
+    updateCarousel();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    updateCarousel();
+  });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      currentIndex = parseInt(e.target.getAttribute('data-slide'), 10);
+      updateCarousel();
+    });
+  });
+</script>
+
+</body>
+</html>
